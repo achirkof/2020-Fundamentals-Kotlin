@@ -37,7 +37,7 @@ object KotlinWorkshop3 {
             guesses[counter] = userInput
 
             // TODO 1: Uncomment. Declare playRound function: takes 2 integer arguments and returns a boolean.
-//            guessed = playRound(userInput, randomNumber)
+            guessed = playRound(userInput, randomNumber)
 
             counter++
         }
@@ -52,10 +52,22 @@ object KotlinWorkshop3 {
     //  If user entered number below randomNumber - show message "Your Guess is Lower"
     //  if user entered number over randomNumber - show message "Your Guess is Higher".
     //  See workshop #2
-//    private fun playRound(...) : ... {
-//
-//        return false
-//    }
+    private fun playRound(input: Int, number: Int) : Boolean {
+        when {
+            input == number -> {
+                println("Congratulations, the number is $number")
+                return true
+            }
+            input < number -> {
+                println("Your Guess is Lower")
+            }
+            else -> {
+                println("Your Guess is Higher")
+            }
+        }
+
+        return false
+    }
 
 
 
@@ -64,45 +76,51 @@ object KotlinWorkshop3 {
     // TODO (bonus): Create analytics system for the game. Collect stats and print.
     private fun printGameStats(guesses: IntArray, guessCounter: Int, randomNumber: Int) {
         // TODO 3: Uncomment. Print total guesses count.
-//        printTotalCountOfGuesses(guessCounter)
+        printTotalCountOfGuesses(guessCounter)
 
         // TODO 4: Uncomment.
         //  Add high level function "countHigherGuesses" for printing higher elements from array.
-//         countHigherGuesses(guesses, randomNumber) { counter ->
-//             println("Total count of higher guesses: $counter\n")
-//         }
+        countHigherGuesses(guesses, randomNumber)
 
         // TODO 5: Uncomment. Create lambda function "countLowerGuesses" for printing lower elements from array.
         //  Do not print element if its value == "-1", the default value given to array on a initializing stage.
-        // countLowerGuesses(guesses, randomNumber)
+         countLowerGuesses(guesses, randomNumber)
 
         // TODO 6: Uncomment. Print every element of guesses in separate line via .forEach high-level function.
-        // guesses
+         guesses
     }
 
     // TODO 3
     // Should print total guesses count.
     private fun printTotalCountOfGuesses(guessCounter: Int) {
-        TODO()
+        println("Total count: $guessCounter")
     }
 
     // TODO 4
     // Should count and print guesses that were higher than randomNumber.
     // Should return count as fun result.
-    private fun countHigherGuesses(
-        guesses: IntArray,
-        randomNumber: Int,
-        printer: (Int) -> Unit
-
-    ): Int {
+    private fun countHigherGuesses(guesses: IntArray, randomNumber: Int): Int {
         var counter = 0
-        TODO()
+        for (i in guesses) {
+            if (i > randomNumber) {
+                counter++
+                println("$counter $i is higher than $randomNumber")
+            }
+        }
+        println("Total count of higher guesses: $counter\n")
+        return counter
     }
 
     // TODO 5
     // Should count and print guesses that were lower than randomNumber.
     val countLowerGuesses: (IntArray, Int) -> Unit = { guesses, randomNumber ->
-        TODO()
+        var counter = 0
+        for (g in guesses) {
+            if (g < randomNumber) {
+                counter++
+                println("$counter $g is lower than $randomNumber")
+            }
+        }
     }
 
 
@@ -116,7 +134,7 @@ object KotlinWorkshop3 {
         println("Game: \"Guess a number\"")
         print("Enter maximum number in range 1..20 inclusive: ")
         return try {
-            var input = scanner.nextInt()
+            val input = scanner.nextInt()
             if (input in lowerLimit..upperLimit) {
                 input
 
@@ -135,7 +153,7 @@ object KotlinWorkshop3 {
         val badResult = -1
 
         return try {
-            var input = scanner.nextInt()
+            val input = scanner.nextInt()
             if (input in lowerLimit..nonNullUpperBound) {
                 input
 

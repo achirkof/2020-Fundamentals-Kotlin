@@ -33,13 +33,13 @@ object KotlinWorkshop1 {
         // TODO 1: Uncomment.
         //  Assign "nullableElvisString" to the "notNullUserString" and fix the assignment with elvis operator.
         //  If "nullableElvisString" is null, "notNullUserString" should be equal to "emptyString".
-//        var notNullUserString: String =
-//        println("Result string is empty $notNullUserString")
+        var notNullUserString: String = nullableElvisString ?: emptyString
+        println("Result string is empty $notNullUserString")
 
         // TODO 2: Uncomment.
         //  We know that "nullableString" is non-null by fact. Reassign value from "nullableAssertionString" using !! operator.
-//        notNullUserString =
-//        println("Result string is $notNullUserString")
+        notNullUserString = nullableAssertionString!!
+        println("Result string is $notNullUserString")
 
 
 
@@ -51,26 +51,26 @@ object KotlinWorkshop1 {
         val notNullAlternative = 0
         val firstNumber: Int? = 10
         val secondNumber: Int? = 20
-//        val sum : Int? =
-//        println("Sum is {$sum}")
+        val sum : Int? = firstNumber?.plus(secondNumber ?: 0)
+        println("Sum is {$sum}")
 
 
         // TODO 4: Uncomment. Store user String input in a "stringInput" variable.
         // While running the program. Look at the console. Click inside the console area. Input a string.
-//        print("Please, input a string: ")
-//        val stringInput: String? = MyScanner.scan.next() // <--- string input 1
+        print("Please, input a string: ")
+        val stringInput: String? = MyScanner.scan.next() // <--- string input 1
 
         // TODO 5: Uncomment.
         //  Store user Int input in "firstIntInput" and "secondIntInput" variables.
         //  Replace the 'null' to calculate a "sumIntInputs".
         //  Use '?' check, '.plus()' function and '?:' to add valid alternative inside '.plus()'.
         // While running the program. Look at the console. Click inside the console area. Input a number, then second number.
-//        print("Please, input a number: ")
-//        val firstIntInput: Int? = MyScanner.scan.nextInt() // <--- number input 1
-//        print("Please, input a second number: ")
-//        val secondIntInput: Int? = MyScanner.scan.nextInt() // <--- number input 2
-//        val sumIntInputs : Int? = firstIntInput?.plus(secondIntInput ?: null) // <--- replace 'null' with correct expression
-//        println("String:$stringInput, Sum of numbers:$sumIntInputs")
+        print("Please, input a number: ")
+        val firstIntInput: Int? = MyScanner.scan.nextInt() // <--- number input 1
+        print("Please, input a second number: ")
+        val secondIntInput: Int? = MyScanner.scan.nextInt() // <--- number input 2
+        val sumIntInputs : Int? = firstIntInput?.plus(secondIntInput ?: 0) // <--- replace 'null' with correct expression
+        println("String:$stringInput, Summ of numbers:$sumIntInputs")
 
 
 

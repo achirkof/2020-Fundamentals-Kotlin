@@ -28,15 +28,44 @@ class Bicycle: Transport(1) {
 // TODO 1: Create a new interface that will be appropriate for new classes below.
 // ? By convention, names of Classes and Interfaces start with an upper case letter and use the camel case.
 // Example: "SomeLongClassName".
-//interface ...
+interface Carrieable {
+    fun isFull(): Boolean
+}
 
 // TODO 2: Write your own class Bus and some Car.
 //  Instead of writing it from scratch, extend it from the Transport class and your new interface.
 // ? Class can extends only one other class, but implements many interfaces, i.e.:
 // class Kitty(): Cat, Cuteable, Sleepable, Furryable {}
 
-//class Bus ...
-//class Car ...
+class Bus(passengersCount: Int): Transport(passengersCount), Carrieable {
+    private val maxCapacity = 25
+
+    override fun isFull(): Boolean {
+        return passengersCount > maxCapacity
+    }
+
+    override fun drive() {
+        if (!isFull()) {
+            println("Can add more passengers")
+        } else {
+            println("We are full. Let's drive!")
+            drive()
+        }
+    }
+}
+
+
+class Car(passengersCount: Int): Transport(passengersCount), Carrieable  {
+    private val maxCapacity = 5
+
+    override fun isFull(): Boolean {
+        return passengersCount > maxCapacity
+    }
+
+    override fun drive() {
+        println("drivind Car")
+    }
+}
 
 // TODO 3: Test your transport in appropriate sections
 object VehiclesTest {
@@ -51,17 +80,20 @@ object VehiclesTest {
 
     private fun testBus() {
         println("Testing how bus drives...")
-//        val bus = ...
+        val bus = Bus(25)
+        bus.drive()
     }
 
     private fun testCar() {
         println("Testing how car drives...")
-//        val car = ...
+        val car = Car( 3)
+        car.drive()
     }
 
     private fun testBicycle() {
         println("Testing how bicycle drives...")
-//        ...
+        val bike = Bicycle()
+        bike.drive()
     }
 
 
@@ -70,10 +102,9 @@ object VehiclesTest {
 
     // TODO 4: Test bus abilities as separate features.
     private fun testBusParts() {
-        println("Testing bus's feature 1...")
+        val car = Car(5)
 
-
-        println("Testing bus's feature 2...")
-
+        val capacity: Carrieable = car
+        println("Capacity is full? :${capacity.isFull()}")
     }
 }
